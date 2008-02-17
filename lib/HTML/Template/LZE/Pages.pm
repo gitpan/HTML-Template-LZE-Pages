@@ -1,8 +1,7 @@
 package HTML::Template::LZE::Pages;
-use HTML::Template::LZE::Template;
+use HTML::Template::LZE;
 use strict;
 use warnings;
-
 require Exporter;
 use vars qw(
   $DefaultClass
@@ -22,7 +21,7 @@ use vars qw(
 @HTML::Template::LZE::Pages::EXPORT = qw(makePages);
 @ISA                                = qw(Exporter);
 
-$HTML::Template::LZE::Pages::VERSION = '0.24';
+$HTML::Template::LZE::Pages::VERSION = '0.25';
 
 $DefaultClass = 'HTML::Template::LZE::Pages' unless defined $HTML::Template::LZE::Pages::DefaultClass;
 
@@ -40,17 +39,19 @@ use HTML::Template::LZE::Pages;
 
         my %needed =(
 
-                start  => '20',
+        length => '345',
 
-                length    => '345',
+        style => 'Crystal',
 
-                style  => 'Crystal',
+        mod_rewrite => 0,
 
-                mod_rewrite => 1,
+        action => 'dbs',
 
-                action  => 'dbs',
+        start  => param('von') ? param('von') : 0,
 
-                linkspropage => 3,
+        path => "/home/groups/l/li/lindnerei/cgi-bin/",
+
+        append => '?queryString=testit'
 
         );
 
@@ -60,17 +61,19 @@ use HTML::Template::LZE::Pages;
 
         my %needed =(
 
-                start  => '20',
+        length => '345',
 
-                length    => '345',
+        style => 'Crystal',
 
-                style  => 'Crystal',
+        mod_rewrite => 0,
 
-                mod_rewrite => 1,
+        action => 'dbs',
 
-                action  => 'dbs',
+        start  => param('von') ? param('von') : 0,
 
-                append => '?queryString=testit'
+        path => "/home/groups/l/li/lindnerei/cgi-bin/",
+
+        append => '?queryString=testit'
 
         );
 
@@ -118,6 +121,8 @@ sub makePages {
 
 =head2 ebis()
 
+private
+
 =cut
 
 sub ebis {
@@ -138,7 +143,7 @@ sub ebis {
         $b = ($beginn- $linksProPage >= 0) ? $beginn- $linksProPage : 0;
         my $end = ($sites >= 10) ? $b+ 10 : $sites;
 
-        while($b < $end) {    # append links
+        while($b < $end+ 1) {    # append links
                 my $c = $b* $linksProPage;
                 my $d = $c+ $linksProPage;
                 $d = $length if($d > $length);
@@ -158,6 +163,8 @@ sub ebis {
 
 =head2  getSelf()
 
+privat see L<HTML::Menu::TreeView>
+
 =cut
 
 sub getSelf {
@@ -167,7 +174,7 @@ sub getSelf {
 
 =head1 AUTHOR
 
-Dirk Lindner <lindnerei@o2online.de>
+Dirk Lindner <lze@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

@@ -1,16 +1,13 @@
+#!/usr/bin/perl -w
 use lib qw(lib);
 use HTML::Template::LZE::Pages;
-use Test::More tests => 1;
 use Cwd;
 my $cwd  = cwd();
 my $test = new HTML::Template::LZE::Pages;
 use CGI::LZE qw(:all);
 print header;
-print start_html(-title => 'Window', -style => '/style/Crystal/pages.css',);
-$ENV{SCRIPT_NAME} = "pages.pl";
+print start_html(-title => 'HTML::Template::LZE::Pages', -style => '/style/Crystal/pages.css',);
 my %needed = (
-
-        start => '20',
 
         length => '345',
 
@@ -18,10 +15,15 @@ my %needed = (
 
         mod_rewrite => 0,
 
-        action => 'dbs',
+        action => "Pages",
 
-        linkspropage => 3,
+        start => param('von') ? param('von') : 0,
+
+        path => "/home/groups/l/li/lindnerei/cgi-bin/",
 
 );
 print $test->makePages(\%needed);
+
+use showsource;
+&showSource("./pages.pl");
 print end_html;
