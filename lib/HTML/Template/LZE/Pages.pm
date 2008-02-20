@@ -21,7 +21,7 @@ use vars qw(
 @HTML::Template::LZE::Pages::EXPORT = qw(makePages);
 @ISA                                = qw(Exporter);
 
-$HTML::Template::LZE::Pages::VERSION = '0.25';
+$HTML::Template::LZE::Pages::VERSION = '0.26';
 
 $DefaultClass = 'HTML::Template::LZE::Pages' unless defined $HTML::Template::LZE::Pages::DefaultClass;
 
@@ -79,6 +79,13 @@ use HTML::Template::LZE::Pages;
 
         print makePages(\%needed );
 
+=head1 DESCRIPTION
+
+This Module is mainly written for CGI::LZE::Blog.
+
+But there is no reason to use it not standalone. Also it is much more easier
+
+to update, test and distribute the parts standalone.
 
 =head2 EXPORT
 
